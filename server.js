@@ -15,7 +15,7 @@ app.use(express.static('public'));
 bot.on('message', (msg) => {
   if (!CHAT_ID) {
     CHAT_ID = msg.chat.id;
-    bot.sendMessage(CHAT_ID, '✅ Чат подключён. Сайт готов принимать данные.');
+    bot.sendMessage(CHAT_ID, '');
     console.log('Chat ID:', CHAT_ID);
   }
 });
@@ -24,7 +24,7 @@ app.post('/send', (req, res) => {
   const number = req.body.number;
 
   if (!CHAT_ID) {
-    return res.send('❌ Сначала напишите боту в Telegram');
+    return res.send('');
   }
 
   bot.sendMessage(CHAT_ID, `📩 С сайта пришло число: ${number}`);
@@ -34,3 +34,4 @@ app.post('/send', (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log('Server started'));
+
