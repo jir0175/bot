@@ -28,8 +28,9 @@ app.post('/send', (req, res) => {
   }
 
   bot.sendMessage(CHAT_ID, `📩 С сайта пришло число: ${number}`);
-  res.send('✅ Отправлено в Telegram');
+  res.send('');
 });
 
 const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => console.log('Server started'));
